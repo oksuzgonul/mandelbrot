@@ -1,0 +1,19 @@
+#version 330 core
+
+// Ouput data
+out vec3 color;
+
+void main()
+{
+	//true to the original creators' color scheme
+	vec2 c = vec2(gl_FragCoord.x/400 - 1, gl_FragCoord.y/400 -1);
+	vec2 z = vec2(0);
+	float iter;
+	for(iter = 0; iter < 255; iter++)
+	{
+		z = vec2(z.x*z.x-z.y*z.y, 2*z.x*z.y) + c;
+		if(length(z) > 2) break;
+	}
+	color = vec3(iter/255,iter/255, iter/255);
+
+}
