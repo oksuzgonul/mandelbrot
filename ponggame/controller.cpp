@@ -13,22 +13,26 @@ using namespace glm;
 #include "controller.hpp"
 
 float mousePos;
-float keyPos;
 float deltaTime;
+glm::vec2 movementDir;
 
 float getMouse()
 {
 	return mousePos;
 }
 
-float getKey()
-{
-	return keyPos;
-}
-
 float getDeltaTime()
 {
 	return deltaTime;
+}
+
+glm::vec4 getCenter()
+{
+	updatePosition();
+	glm::vec4 center(0);
+	center.x = movementDir.x;
+	center.y = movementDir.y;
+	return center;
 }
 
 void updatePosition()
@@ -38,23 +42,26 @@ void updatePosition()
 	double currentTime = glfwGetTime();
 	deltaTime = float(currentTime - lastTime);
 
-	// Get mouse position
-	double xpos, ypos;
-	glfwGetCursorPos(window, &xpos, &ypos);
-	// Reset mouse position for next frame
-	glfwSetCursorPos(window, 800 / 2, 800 / 2);
-	
-	mousePos =  0.5f * float(400 - ypos) * deltaTime;
-	keyPos = 0.0f;
+	movementDir = glm::vec2(0);
 
 	if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
 	{
-		keyPos = 2 * deltaTime;
+		movementDir.y = 2 * deltaTime;
 	}
 		
 	if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
 	{
-		keyPos = -2 * deltaTime;
+		movementDir.y = -2 * deltaTime;
+	}
+
+	if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
+	{
+		movementDir.x = -2 * deltaTime;
+	}
+
+	if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
+	{
+		movementDir.x = 2 * deltaTime;
 	}
 
 	lastTime = currentTime;

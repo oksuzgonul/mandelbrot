@@ -28,19 +28,18 @@ Canvas::Canvas(
 	glBindBuffer(GL_ARRAY_BUFFER, CanvasVertexBufferID);
 	glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(glm::vec2), &vertices[0], GL_STATIC_DRAW);
 	MatrixID = glGetUniformLocation(CanvasShaderID, "MVP");
+	ControlsID = glGetUniformLocation(CanvasShaderID, "Controls");
 }
 
 void Canvas::drawCanvas()
 {
-
-
 	glUseProgram(CanvasShaderID);
 	glm::mat4 Model = glm::translate(glm::mat4(), glm::vec3(0));
 	glm::mat4 MVP = *Projection * *View * Model;
 
-	// Send our transformation to the currently bound shader, 
-	// in the "MVP" uniform
 	glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
+	glUniform4f(ControlsID, Position.x, Position.y, Position.z, Position.w);
+
 	glEnableVertexAttribArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, CanvasVertexBufferID);
 	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, (void*)0);
@@ -48,6 +47,11 @@ void Canvas::drawCanvas()
 	glDrawArrays(GL_TRIANGLES, 0, vertices.size());
 
 	glDisableVertexAttribArray(0);
+}
+
+void Canvas::updatePos(glm::vec4 controls)
+{
+	Position += controls;
 }
 
 void Canvas::CleanUp()

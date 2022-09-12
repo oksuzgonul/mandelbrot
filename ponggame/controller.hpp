@@ -5,4 +5,5 @@ void updatePosition();
 float getMouse();
 float getKey();
 float getDeltaTime();
+glm::vec4 getCenter();
 #endif

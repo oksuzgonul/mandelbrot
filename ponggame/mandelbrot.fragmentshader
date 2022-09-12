@@ -1,12 +1,13 @@
 #version 330 core
 
+in vec4 controls;
 // Ouput data
 out vec3 color;
 
 void main()
 {
 	//true to the original creators' color scheme
-	vec2 c = vec2(gl_FragCoord.x/400 - 1, gl_FragCoord.y/400 -1);
+	vec2 c = vec2(gl_FragCoord.x/400 - 1 + controls.x, gl_FragCoord.y/400 - 1 + controls.y);
 	vec2 z = vec2(0);
 	float iter;
 	for(iter = 0; iter < 255; iter++)

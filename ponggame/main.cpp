@@ -17,6 +17,7 @@ GLFWwindow* window;
 using namespace glm;
 
 #include "shaderloader.hpp"
+#include "controller.hpp"
 #include "Canvas.h"
 
 #ifndef NDEBUG
@@ -126,9 +127,8 @@ int main()
 	do
 	{
 		glClear(GL_COLOR_BUFFER_BIT);
-		// Render player pads and the ball
-		//updatePosition();
 
+		canvas.updatePos(getCenter());
 		canvas.drawCanvas();
 
 		// Swap buffers
