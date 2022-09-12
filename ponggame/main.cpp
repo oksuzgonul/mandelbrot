@@ -124,12 +124,18 @@ int main()
 		&Projection,
 		&View);
 
+	glm::vec4 SmoothPosition(0);
+	glm::vec4 Position(0);
+
 	do
 	{
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		canvas.updatePos(getCenter());
-		canvas.drawCanvas();
+		Position += getCenter();
+		SmoothPosition.x = std::lerp(SmoothPosition.x, Position.x, 0.003f);
+		SmoothPosition.y = std::lerp(SmoothPosition.y, Position.y, 0.003f);
+
+		canvas.drawCanvas(SmoothPosition);
 
 		// Swap buffers
 		glfwSwapBuffers(window);

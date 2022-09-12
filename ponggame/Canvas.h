@@ -20,8 +20,7 @@ public:
 		glm::vec2 bottom_left, 
 		glm::mat4* ProjectionW, 
 		glm::mat4* ViewW);
-	void drawCanvas();
-	void updatePos(glm::vec4 controls);
+	void drawCanvas(glm::vec4 Position);
 	void CleanUp();
 private:
 	unsigned int CanvasVertexBufferID;
@@ -36,7 +35,6 @@ private:
 	std::vector<glm::vec2> uvs;
 	glm::mat4* Projection;
 	glm::mat4* View;
-	glm::vec4 Position;
 	void generateRectangularVertices(
 		glm::vec2 top_left,
 		glm::vec2 top_right,

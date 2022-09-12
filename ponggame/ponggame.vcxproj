@@ -123,6 +123,7 @@
       <AdditionalIncludeDirectories>external\glfw-3.3.7.bin.WIN64\include;external\glm-0.9.7.1;external\glew-2.1.0\include;external\assimp-3.0.1270\include;external\bullet-2.81-rev2613\src;external\glad\include;C:\Users\oksuz\source\repos\ponggame\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -141,6 +142,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>external\glfw-3.3.7.bin.WIN64\include;external\glm-0.9.7.1;external\glew-2.1.0\include;external\assimp-3.0.1270\include;external\bullet-2.81-rev2613\src;external\glad\include;C:\Users\oksuz\source\repos\ponggame\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

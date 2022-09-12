@@ -31,7 +31,7 @@ Canvas::Canvas(
 	ControlsID = glGetUniformLocation(CanvasShaderID, "Controls");
 }
 
-void Canvas::drawCanvas()
+void Canvas::drawCanvas(glm::vec4 Position)
 {
 	glUseProgram(CanvasShaderID);
 	glm::mat4 Model = glm::translate(glm::mat4(), glm::vec3(0));
@@ -47,11 +47,6 @@ void Canvas::drawCanvas()
 	glDrawArrays(GL_TRIANGLES, 0, vertices.size());
 
 	glDisableVertexAttribArray(0);
-}
-
-void Canvas::updatePos(glm::vec4 controls)
-{
-	Position += controls;
 }
 
 void Canvas::CleanUp()
