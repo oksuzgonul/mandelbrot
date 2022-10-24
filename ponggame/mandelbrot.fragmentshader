@@ -6,15 +6,17 @@ out vec3 color;
 
 void main()
 {
-	//true to the original creators' color scheme
+	// section of mandelbrot set to display
 	vec2 c = vec2(gl_FragCoord.x/400 - 1 + controls.x, gl_FragCoord.y/400 - 1 + controls.y);
 	vec2 z = vec2(0);
 	float iter;
 	for(iter = 0; iter < 255; iter++)
 	{
+		// equation for the mandelbrot set
 		z = vec2(z.x*z.x-z.y*z.y, 2*z.x*z.y) + c;
 		if(length(z) > 2) break;
 	}
+	// color according to the level of divergence
 	color = vec3(iter/255,iter/255, iter/255);
 
 }
