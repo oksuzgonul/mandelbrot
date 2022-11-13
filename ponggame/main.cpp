@@ -134,7 +134,7 @@ int main()
 		Position += getCenter();
 		SmoothPosition.x = std::lerp(SmoothPosition.x, Position.x, 0.003f);
 		SmoothPosition.y = std::lerp(SmoothPosition.y, Position.y, 0.003f);
-
+		SmoothPosition.z = get_zoom();
 		canvas.drawCanvas(SmoothPosition);
 
 		// Swap buffers

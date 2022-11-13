@@ -16,6 +16,7 @@ using namespace glm;
 float mousePos;
 float deltaTime;
 glm::vec2 movementDir;
+float zoom = 1;
 
 float getMouse()
 {
@@ -35,6 +36,23 @@ glm::vec4 getCenter()
 	center.y = movementDir.y;
 	return center;
 }
+
+float get_zoom()
+{
+	return zoom;
+}
+
+void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
+{
+	if (yoffset > 0)
+	{
+		zoom *= 1.03f;
+	}
+	else
+	{
+		zoom *= .97f;
+	}
+};
 
 void updatePosition()
 {
@@ -64,6 +82,6 @@ void updatePosition()
 	{
 		movementDir.x = 2 * deltaTime;
 	}
-
+	glfwSetScrollCallback(window,scroll_callback);
 	lastTime = currentTime;
 }
